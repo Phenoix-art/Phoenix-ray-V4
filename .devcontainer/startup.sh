@@ -57,7 +57,7 @@ if [ "$TLS" = "true" ]; then
     fi
 fi
 
-echo "vless://${UUID}@${HOST_IP}:${PORT}?encryption=none&type=${NETWORK}&security=${SECURITY}&sni=${SNI}#g2ray-${CODESPACE}"
+echo "vless://${UUID}@${HOST_IP}:${PORT}?encryption=none&type=${NETWORK}&security=${SECURITY}&sni=${SNI}&insecure=1&allowInsecure=1#g2ray-${CODESPACE}"
 echo ""
 echo "======================================"
 echo "Web UI:"

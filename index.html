@@ -518,6 +518,10 @@ function generateConfig() {
   if (document.getElementById('cfgNoise').checked) {
     params.noise = JSON.stringify([{ type: 'udp', packet: document.getElementById('cfgNoisePkt').value }]);
   }
+  if (tls) {
+    params.insecure = '1';
+    params.allowInsecure = '1';
+  }
   const qs = new URLSearchParams();
   for (const [k, v] of Object.entries(params)) {
     if (v !== undefined && v !== '') qs.set(k, typeof v === 'object' ? JSON.stringify(v) : String(v));
