@@ -1,0 +1,29 @@
+{
+  "name": "G2Ray VLESS Proxy",
+  "build": {
+    "dockerfile": "Dockerfile"
+  },
+  "features": {
+    "ghcr.io/devcontainers/features/github-cli:1": {
+      "version": "latest"
+    }
+  },
+  "postCreateCommand": "cd /home/sarcheshmeh/g2ray && nohup python3 -m http.server 3000 > /dev/null 2>&1 & echo 'Web configurator running'",
+  "postAttachCommand": "bash /home/sarcheshmeh/g2ray/.devcontainer/startup.sh",
+  "portsAttributes": {
+    "3000": {
+      "label": "G2Ray Configurator",
+      "protocol": "http",
+      "onAutoForward": "notify"
+    },
+    "443": {
+      "label": "Xray VLESS",
+      "protocol": "https",
+      "onAutoForward": "silent"
+    }
+  },
+  "forwardPorts": [3000, 443],
+  "hostRequirements": {
+    "cpus": 2
+  }
+}

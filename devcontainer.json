@@ -1,0 +1,36 @@
+{
+  "name": "g2ray-configurator",
+  "build": {
+    "dockerfile": "Dockerfile"
+  },
+  "features": {
+    "ghcr.io/devcontainers/features/common-utils:2": {
+      "installZsh": false
+    },
+    "ghcr.io/devcontainers/features/github-cli:1": {
+      "version": "latest"
+    }
+  },
+  "postAttachCommand": "python3 -m http.server 3000 & bash /app/startup.sh",
+  "portsAttributes": {
+    "3000": {
+      "label": "G2Ray Configurator",
+      "protocol": "http",
+      "onAutoForward": "notify"
+    },
+    "443": {
+      "label": "xray",
+      "protocol": "https",
+      "onAutoForward": "silent"
+    },
+    "8080": {
+      "label": "admin",
+      "protocol": "http",
+      "onAutoForward": "notify"
+    }
+  },
+  "forwardPorts": [3000, 443, 8080],
+  "hostRequirements": {
+    "cpus": 2
+  }
+}
